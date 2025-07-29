@@ -1,0 +1,48 @@
+networks:
+  selenoid:
+    external: true
+
+services:
+  selenoid:
+    image: aerokube/selenoid:latest
+    container_name: selenoid
+    ports:
+      - "4444:4444"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock # Для управления контейнерами
+      - ./browsers/:/etc/selenoid/
+      - ./video:/selenoid/video # Место для хранения видео
+      - ./logs:/selenoid/logs # Место для логов
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=./video
+    command:
+      - "-conf"
+      - "/etc/selenoid/browsers.json"
+      - "-video-recorder-image"
+      - "selenoid/video-recorder:latest-release"
+      - "-video-output-dir"
+      - "./selenoid/video"
+      - "-log-output-dir"
+      - "./selenoid/logs"
+      - "-container-network"
+      - "selenoid"
+    networks:
+      - selenoid
+    logging:
+      driver: "json-file"  # Логирование с помощью драйвера json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest
+    container_name: selenoid-ui
+    ports:
+      - "8083:8080"
+    command:
+      - "--selenoid-uri"
+      - "http://selenoid:4444"
+    depends_on:
+      - selenoid
+    networks:
+      - selenoid
