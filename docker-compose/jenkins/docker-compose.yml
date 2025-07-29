@@ -1,0 +1,12 @@
+services:
+  jenkins_qa_guru:
+    image: jenkins/jenkins:lts
+    privileged: true
+    user: root
+    ports:
+      - "8082:8080"
+    container_name: jenkins_qa_guru
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - ./allure/allure_2.27.0:/var/jenkins_home/tools/ru.yandex.qatools.allure.jenkins.tools.AllureCommandlineInstallation/allure_2.27
+    restart: always
