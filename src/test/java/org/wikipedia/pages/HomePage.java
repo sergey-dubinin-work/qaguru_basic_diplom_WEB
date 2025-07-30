@@ -7,8 +7,7 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byClassName;
-import static com.codeborne.selenide.Selectors.byId;
+import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -18,7 +17,8 @@ public class HomePage {
         logo = $(byClassName("central-textlogo-wrapper")),
         langListButton = $(byId("js-lang-list-button")),
         searchBar = $(byId("searchInput")),
-        topLanguagesBlock = $(byClassName("central-featured"));
+        topLanguagesBlock = $(byClassName("central-featured")),
+        searchButton = $(byText("Search"));
 
     private final ElementsCollection
         topLanguages = $$(byClassName("central-featured-lang"));
@@ -50,6 +50,19 @@ public class HomePage {
     @Step("Проверка наличия строки поиска")
     public HomePage shouldHaveSearchBar(){
         searchBar.shouldBe(visible);
+        return this;
+    }
+
+    @Step("Ввод текста в строку поиска")
+    public HomePage inputInSearchBar(String value){
+        shouldHaveSearchBar();
+        searchBar.setValue(value);
+        return this;
+    }
+
+    @Step("Нажатие на кнопку Поиск")
+    public HomePage clickSearch(){
+        searchButton.click();
         return this;
     }
 
