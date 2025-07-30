@@ -6,14 +6,13 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.wikipedia.TestBase;
-import org.wikipedia.pages.HomePage;
+import org.wikipedia.WikipediaWebTest;
 
 import static io.qameta.allure.Allure.step;
 
 @Feature("Главная страница Wikipedia")
 @DisplayName("Главная страница Wikipedia")
-public class OpenHomePageTest extends TestBase {
+public class OpenHomePageTest extends WikipediaWebTest {
 
     @Test
     @AllureId("68")
@@ -21,8 +20,6 @@ public class OpenHomePageTest extends TestBase {
     @Story("Открытие главной страницы")
     @Owner("sergey.dubinin.work")
     void openingHomePageWithDefaultLanguageTest() {
-        HomePage homePage = new HomePage();
-
         step("Открыть URL https://www.wikipedia.org/",
                 homePage::open);
         step("Убедиться, что отображается логотип Wikipedia",
@@ -37,7 +34,6 @@ public class OpenHomePageTest extends TestBase {
     @Story("Открытие главной страницы")
     @Owner("sergey.dubinin.work")
     void checkMainBlocksOnMainPage() {
-        HomePage homePage = new HomePage();
         step("Перейти на https://www.wikipedia.org/",
                 homePage::open);
         step("Убедиться, что отображается поле поиска",
