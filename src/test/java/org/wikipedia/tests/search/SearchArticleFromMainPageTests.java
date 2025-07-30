@@ -37,4 +37,25 @@ public class SearchArticleFromMainPageTests extends WikipediaWebTest {
                 });
     }
 
+    @Test
+    @AllureId("74")
+    @DisplayName("Поиск несуществующей статьи и проверка сообщения об ошибке")
+    @Story("Поиск с главной страницы")
+    @Owner("sergey.dubinin.work")
+    void searchNotExistingArticleFromMainPage() {
+        step("Перейти на сайт https://www.wikipedia.org/",
+                homePage::open);
+        step("Убедиться, что отображается поле поиска");
+        step("Ввести в поле поиска строку asdlkfjasdlfkj (набор случайных символов, заведомо несуществующее название)",
+                () -> homePage.inputInSearchBar("asdlkfjasdlfkj"));
+        step("Нажать Enter или кнопку поиска",
+                () -> homePage.clickSearch());
+        ArticlePage articlePage = new ArticlePage();
+        step("Дождаться загрузки страницы с результатами поиска",
+                () -> {
+                    articlePage.articleHeaderHasText("Search results");
+                    articlePage.articlePageHasText("There were no results matching the query.");
+                });
+    }
+
 }
