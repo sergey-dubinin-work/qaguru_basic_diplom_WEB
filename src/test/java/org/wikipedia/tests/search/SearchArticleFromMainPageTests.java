@@ -14,6 +14,7 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Поиск статей")
+@DisplayName("Поиск статей")
 public class SearchArticleFromMainPageTests extends WikipediaWebTest {
 
     @Test

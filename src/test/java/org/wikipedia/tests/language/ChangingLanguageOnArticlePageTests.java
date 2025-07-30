@@ -14,6 +14,7 @@ import static com.codeborne.selenide.WebDriverConditions.url;
 import static io.qameta.allure.Allure.step;
 
 @Feature("Смена языка интерфейса")
+@DisplayName("Смена языка интерфейса")
 public class ChangingLanguageOnArticlePageTests {
 
     @Test
