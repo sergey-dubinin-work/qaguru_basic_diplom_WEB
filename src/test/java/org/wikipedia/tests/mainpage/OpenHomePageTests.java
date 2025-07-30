@@ -12,7 +12,7 @@ import static io.qameta.allure.Allure.step;
 
 @Feature("Главная страница Wikipedia")
 @DisplayName("Главная страница Wikipedia")
-public class OpenHomePageTest extends WikipediaWebTest {
+public class OpenHomePageTests extends WikipediaWebTest {
 
     @Test
     @AllureId("68")

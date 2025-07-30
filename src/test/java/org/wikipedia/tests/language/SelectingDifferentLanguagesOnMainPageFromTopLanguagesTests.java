@@ -15,7 +15,7 @@ import static io.qameta.allure.Allure.step;
 
 @Feature("Главная страница Wikipedia")
 @DisplayName("Главная страница Wikipedia")
-public class SelectingDifferentLanguagesOnMainPageFromTopLanguagesTest extends WikipediaWebTest {
+public class SelectingDifferentLanguagesOnMainPageFromTopLanguagesTests extends WikipediaWebTest {
 
     @Test
     @AllureId("70")
