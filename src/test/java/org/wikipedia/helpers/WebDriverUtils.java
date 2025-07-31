@@ -15,9 +15,9 @@ import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.openqa.selenium.logging.LogType.BROWSER;
 import static org.wikipedia.config.ConfigurationManager.getSelenoidConfig;
 
-public class DriverUtils {
+public class WebDriverUtils {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(DriverUtils.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(WebDriverUtils.class);
 
     public static String getSessionId() {
         return ((RemoteWebDriver) getWebDriver()).getSessionId().toString();

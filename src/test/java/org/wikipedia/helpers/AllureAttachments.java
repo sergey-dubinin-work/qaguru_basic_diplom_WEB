@@ -16,7 +16,7 @@ import static com.codeborne.selenide.Selenide.sleep;
 
 public class AllureAttachments {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(DriverUtils.class);
+    public static final Logger LOGGER = LoggerFactory.getLogger(WebDriverUtils.class);
 
     @Attachment(value = "{attachName}", type = "text/plain")
     public static String attachAsText(String attachName, String message) {
@@ -25,23 +25,23 @@ public class AllureAttachments {
 
     @Attachment(value = "{attachName}", type = "image/png")
     public static byte[] addScreenshotAs(String attachName) {
-        return DriverUtils.getScreenshotAsBytes();
+        return WebDriverUtils.getScreenshotAsBytes();
     }
 
     @Attachment(value = "Page source", type = "text/html", fileExtension = "html")
     public static byte[] addPageSource() {
-        return DriverUtils.getPageSourceAsBytes();
+        return WebDriverUtils.getPageSourceAsBytes();
     }
 
     public static void addBrowserConsoleLogs() {
         attachAsText(
                 "Browser console logs",
-                DriverUtils.getConsoleLogs()
+                WebDriverUtils.getConsoleLogs()
         );
     }
 
     public static void addVideo(String sessionId){
-        URL videoUrl = DriverUtils.getVideoUrl(sessionId);
+        URL videoUrl = WebDriverUtils.getVideoUrl(sessionId);
         if (videoUrl != null) {
             InputStream videoInputStream = null;
 
@@ -74,7 +74,7 @@ public class AllureAttachments {
 
         return loadTemplate("templatesHTML/autoplayVideo.html").replace(
                 "{{video_url}}",
-                DriverUtils.getVideoUrl(sessionId).toString()
+                WebDriverUtils.getVideoUrl(sessionId).toString()
         );
 
     }

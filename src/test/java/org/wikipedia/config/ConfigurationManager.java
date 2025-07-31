@@ -8,4 +8,8 @@ public class ConfigurationManager {
         return ConfigCache.getOrCreate(SelenoidConfiguration.class);
     }
 
+    public static BrowserConfiguration getBrowserConfig(){
+        return ConfigCache.getOrCreate(BrowserConfiguration.class);
+    }
+
 }
