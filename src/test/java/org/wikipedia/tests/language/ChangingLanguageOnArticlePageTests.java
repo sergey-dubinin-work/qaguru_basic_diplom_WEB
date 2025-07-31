@@ -7,6 +7,7 @@ import io.qameta.allure.Owner;
 import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.wikipedia.WikipediaWebTest;
 import org.wikipedia.pages.ArticlePage;
 
 import static com.codeborne.selenide.Selenide.webdriver;
@@ -15,7 +16,7 @@ import static io.qameta.allure.Allure.step;
 
 @Feature("Смена языка интерфейса")
 @DisplayName("Смена языка интерфейса")
-public class ChangingLanguageOnArticlePageTests {
+public class ChangingLanguageOnArticlePageTests extends WikipediaWebTest {
 
     @Test
     @AllureId("72")
