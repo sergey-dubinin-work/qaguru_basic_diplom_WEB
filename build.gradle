@@ -52,3 +52,20 @@ tasks.withType(Test).configureEach{
         }
     }
 }
+
+tasks.named("test") {
+    dependsOn("createAllureEnvironment")
+}
+
+tasks.register('createAllureEnvironment'){
+    doFirst {
+        def allureResultsDir = file("$buildDir/allure-results")
+        allureResultsDir.mkdirs()
+
+        def browser = System.getProperty('browserName', 'chrome')
+
+        def envFile = new File(allureResultsDir, "environment.properties")
+        envFile.append("Browser=$browser\n")
+    }
+
+}
